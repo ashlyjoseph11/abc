@@ -1,17 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import Avatar from "@mui/material/Avatar";
-// import Button from "@mui/material/Button";
-// import CssBaseline from "@mui/material/CssBaseline";
-// import TextField from "@mui/material/TextField";
-// import FormControlLabel from "@mui/material/FormControlLabel";
-// import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-// import Grid from "@mui/material/Grid";
-// import Box from "@mui/material/Box";
-// import Typography from "@mui/material/Typography";
-// import Container from "@mui/material/Container";
-// import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import MyToast from '../MyToast'
 
@@ -64,16 +52,15 @@ export const LoginPage = () => {
     }
 
     return (
-        <div className="text-center m-5-auto">
+        <div className="text-center m-5-auto" style={loginStyle}>
             <h2>Sign in to us</h2>
             <form>
                 <p>
-                    <label>Username or email address</label><br/>
+                    <label style={{color: "teal"}}>Enter your email address</label><br/>
                     <input type="email" name="email" required onChange={(e) => { setEmail(e.target.value); }} />
                 </p>
                 <p>
-                    <label>Password</label>
-                    <Link to="/forget-password"><label className="right-label">Forget password?</label></Link>
+                    <label style={{color: "teal"}}>Password</label>
                     <br/>
                     <input type="password" name="password" required onChange={(e) => { setPassword(e.target.value); }}/>
                 </p>
@@ -83,10 +70,14 @@ export const LoginPage = () => {
             </form>
             <MyToast show={showToast} handleClose={() => setShowToast(false)} text={toastText} />
 
-            <footer>
-                <p>First time? <Link to="/register">Create an account</Link>.</p>
-                <p><Link to="/">Back to Homepage</Link>.</p>
-            </footer>
         </div>
     )
+}
+
+const loginStyle = {
+  border: "2px solid teal",
+    width: "36em",
+    marginLeft: "39em",
+    marginTop: "10em",
+    borderRadius: "5px"
 }
