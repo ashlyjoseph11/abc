@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import axios from "axios";
 import { useState } from 'react';
 import { Table } from 'react-bootstrap';
-import { useNavigate } from "react-router-dom";
 
 
 const trStyle = {
@@ -17,10 +16,21 @@ const fdivStyle = {
     width : "max-content",
 }
 
+const dummy_data = {
+  "electricMeterId":"eme_007",
+  "electricMeterName":"eme_1",
+  "location":"cahill",
+  "manufacturer":"nxp",
+  "model":"bmw",
+  "electricCapacity":"23",
+  "installationMethod":"222",
+  "meausurementAccuracy":"66",
+  "dimensions":"2019",
+  "deploymentDate":"2019",
+  "installationDate":"2020",
+  "power":"222"
+}
 
-// const finput = {
-//     disabled : {isdisabled}
-// }
 
 
 
@@ -31,9 +41,15 @@ export const DeviceManagement = () => {
     let [isdisabled, setisDisabled] = useState(true);
     let [hideform, setHideform] = useState(true);
     const noneStyle = {display: 'none'}
-    const blockstyle = {display: 'block'}
+    const blockstyle = {
+      "display": "grid",
+      "grid-template-columns" : "auto auto auto auto auto auto",
+      "grid-template-rows" : "auto auto auto auto",
+      "max-width": "max-content"
+    }
     
     //parameters for viewing device's details
+    const [_id,setId] = useState("");
     const [electricMeterId, setelectricMeterId] = useState("");
     const [electricMeterName, setelectricMeterName] = useState("");
     const [location, setlocation] = useState("");
@@ -95,6 +111,7 @@ export const DeviceManagement = () => {
                 if (res) {
                     console.log(res.data.meters.meter);
                     let Meter = res.data.meters.meter;
+                    setId(Meter._id);
                     setelectricMeterId(Meter.electricMeterId);
                     setelectricMeterName(Meter.electricMeterName);
                     setelectricCapacity(Meter.electricCapacity);
@@ -154,6 +171,22 @@ export const DeviceManagement = () => {
 
       }
 
+      const addmeter = (e) => {
+        axios.post("http://localhost:3001/api/fan/addMeterdetails",dummy_data).then(async (res) => {
+            if (res.status === 200) {
+              if (res) {                
+                console.log(res.data.meter.newmeter);
+                window.location.reload(false);
+            }
+          }
+          else{
+            console.log(res.status);
+          }
+        }).catch((err) => {
+            console.log(err)
+          });
+      }
+
     return(
         <>        
         <div className="text-left">
@@ -180,27 +213,33 @@ export const DeviceManagement = () => {
                 ))}                                    
             </Table>
         </div>
-
-        <form class = "flex-container" style = {hideform ? noneStyle:blockstyle}>
-            <div class="flex-child">
-                <label>Device Name:</label><input name = "dname" value = {electricMeterName} disabled = {isdisabled}/>
-                <label>Device ID:</label><input name = "did" value = {electricMeterId} disabled/>
-                <label>Manufacturer:</label><input name = "dman" value = {manufacturer} disabled = {isdisabled}/>
-                <label>Location:</label><input name = "dloc" value = {location} disabled = {isdisabled}/>
-            </div>
-            <div class="flex-child">
-                <label>Model:</label> <input name = "dmodel" value = {model} disabled = {isdisabled}/>
-                <label>Amperage Capacity:</label> <input name = "dacap" value = {electricCapacity} disabled = {isdisabled}/>
-                <label>Installation Method:</label> <input name = "dins" value = {installationMethod} disabled = {isdisabled}/>
-                <label>Measurement Accuracy:</label> <input name = "dmeaacc" value = {meausurementAccuracy} disabled = {isdisabled}/>
-            </div>
-            <div class="flex-child">
-                <label>Installation Date:</label><input name = "dins" value = {installationDate} disabled = {isdisabled}/>
-                <label>Dimensions:</label> <input name = "ddime" value = {dimensions} disabled = {isdisabled}/>
-                <label>Deployment Date:</label> <input name = "ddep" value = {deploymentDate} disabled = {isdisabled}/>
-                <label>Power:</label> <input name = "dpower" value = {power} disabled = {isdisabled}/>
-            </div>
-            <button style = {showsubmit ? blockstyle:noneStyle}></button>
+        <button style = {{width : 'fit-content'}} onClick={addmeter}>Add a Device + </button>
+        <form style = {hideform ? noneStyle:blockstyle}>
+            <div><label>Device Name:</label></div>
+            <div><input name = "dname" value = {electricMeterName} disabled = {isdisabled}/></div>
+            <div><label>Device ID:</label></div>
+            <div><input name = "did" value = {electricMeterId} disabled/></div>
+            <div><label>Manufacturer:</label></div>
+            <div><input name = "dman" value = {manufacturer} disabled = {isdisabled}/></div>
+            <div><label>Location:</label></div>
+            <div><input name = "dloc" value = {location} disabled = {isdisabled}/></div>
+            <div><label>Model:</label></div>
+            <div><input name = "dmodel" value = {model} disabled = {isdisabled}/></div>
+            <div><label>Amperage Capacity:</label></div>
+            <div><input name = "dacap" value = {electricCapacity} disabled = {isdisabled}/></div>
+            <div><label>Installation Method:</label></div>
+            <div><input name = "dins" value = {installationMethod} disabled = {isdisabled}/></div>
+            <div><label>Measurement Accuracy:</label></div>
+            <div><input name = "dmeaacc" value = {meausurementAccuracy} disabled = {isdisabled}/></div>
+            <div><label>Installation Date:</label></div>
+            <div><input name = "dins" value = {installationDate} disabled = {isdisabled}/></div>
+            <div><label>Dimensions:</label></div>
+            <div><input name = "ddime" value = {dimensions} disabled = {isdisabled}/></div>
+            <div><label>Deployment Date:</label></div>
+            <div><input name = "ddep" value = {deploymentDate} disabled = {isdisabled}/></div>
+            <div><label>Power:</label></div>
+            <div><input name = "dpower" value = {power} disabled = {isdisabled}/></div>
+            <button style = {showsubmit ? blockstyle:noneStyle}>Submit</button>
         </form>
         </>
     )

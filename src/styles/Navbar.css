@@ -12,6 +12,9 @@
   align-items: center;
   margin-left: 0%;
 }
+.navbar h2 {
+  margin-left: 16em;
+}
 
 .menu-bars {
   margin-left: 2rem;
