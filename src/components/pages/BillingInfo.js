@@ -31,8 +31,8 @@ export const BillingInfo = () => {
       <Link to="/bill-payment">
       <div style={{ display: "flex" }}>
           <button
-              style={{ marginLeft: "auto", backgroundColor:'green' , fontSize: '18px', 
-              width:'120px', color: 'black', borderRadius:'5px'}}
+              style={{ marginLeft: "auto", backgroundColor:'teal' , fontSize: '18px', 
+              width:'10em', color: 'white', borderRadius:'5px', padding: "10px"}}
             >
               Next
             </button>
