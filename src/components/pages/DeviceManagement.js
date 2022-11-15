@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import axios from "axios";
 import { useState } from 'react';
 import { Table } from 'react-bootstrap';
+import '../../styles/deviceMgmt.css'
 
 
 const trStyle = {
@@ -9,11 +10,29 @@ const trStyle = {
 
 }
 
-
+const buttonStyle = {
+  color: "white",
+  background: "teal",
+  padding: "8px",
+  width:"10em",
+}
+const formButton = {
+  color: "white",
+  background: "teal",
+  padding: "8px",
+  width:"10em",
+  textTransform: "uppercase",
+  marginTop: "3em",
+  position: "relative",
+  left: "24em"
+}
 
 const fdivStyle = {
     display : "inline-flex",
     width : "max-content",
+}
+const textStyle = {
+  textTransform: "uppercase"
 }
 
 const dummy_data = {
@@ -30,8 +49,6 @@ const dummy_data = {
   "installationDate":"2020",
   "power":"222"
 }
-
-
 
 
 export const DeviceManagement = () => {
@@ -191,7 +208,7 @@ export const DeviceManagement = () => {
         <>        
         <div className="text-left">
             <h5>Device List</h5>
-            <Table table borderless>
+            <Table table borderless style={{width: "93%", marginLeft: "2em", border: "1px solid lightgrey"}}>
                 <thead>
                 <tr>
                     <th className='light-grey'>Device ID</th>                    
@@ -205,24 +222,24 @@ export const DeviceManagement = () => {
                 {meterdetails.map((data) => (
                     <tr style = {trStyle}>
                         <td>{data.electricMeterId}</td>
-                        <td>{data.electricMeterName}</td>
-                        <td><button onClick={ () => view(data._id) }>View</button></td>
-                        <td><button onClick={ () => update(data._id) }>Update</button></td>
-                        <td><button onClick={ () => removedata(data._id) }>Delete</button></td>
+                        <td style={textStyle}>{data.electricMeterName}</td>
+                        <td><button style ={buttonStyle} onClick={ () => view(data._id) }>View</button></td>
+                        <td><button style ={buttonStyle} onClick={ () => update(data._id) }>Update</button></td>
+                        <td><button style ={buttonStyle} onClick={ () => removedata(data._id) }>Delete</button></td>
                     </tr>
                 ))}                                    
             </Table>
         </div>
-        <button style = {{width : 'fit-content'}} onClick={addmeter}>Add a Device + </button>
+        <button style = {{width : 'fit-content', color: "white", background: "teal", padding: "10px", marginLeft: "1.5em"}} onClick={addmeter}>Add a Device + </button>
         <form style = {hideform ? noneStyle:blockstyle}>
             <div><label>Device Name:</label></div>
-            <div><input name = "dname" value = {electricMeterName} disabled = {isdisabled}/></div>
+            <div><input name = "dname" style={textStyle} value = {electricMeterName} disabled = {isdisabled}/></div>
             <div><label>Device ID:</label></div>
-            <div><input name = "did" value = {electricMeterId} disabled/></div>
+            <div><input name = "did" style={textStyle} value = {electricMeterId} disabled/></div>
             <div><label>Manufacturer:</label></div>
-            <div><input name = "dman" value = {manufacturer} disabled = {isdisabled}/></div>
+            <div><input name = "dman" style={textStyle} value = {manufacturer} disabled = {isdisabled}/></div>
             <div><label>Location:</label></div>
-            <div><input name = "dloc" value = {location} disabled = {isdisabled}/></div>
+            <div><input name = "dloc"style={textStyle}  value = {location} disabled = {isdisabled}/></div>
             <div><label>Model:</label></div>
             <div><input name = "dmodel" value = {model} disabled = {isdisabled}/></div>
             <div><label>Amperage Capacity:</label></div>
@@ -239,7 +256,7 @@ export const DeviceManagement = () => {
             <div><input name = "ddep" value = {deploymentDate} disabled = {isdisabled}/></div>
             <div><label>Power:</label></div>
             <div><input name = "dpower" value = {power} disabled = {isdisabled}/></div>
-            <button style = {showsubmit ? blockstyle:noneStyle}>Submit</button>
+            <button style={formButton}>Confirm</button>
         </form>
         </>
     )

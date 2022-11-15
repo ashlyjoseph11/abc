@@ -4,6 +4,7 @@ import { useState } from 'react'
 import ControlMeter from './ControlMeter'
 import ControlIOT from './ControlIOT'
 
+
 export const ControlConfiguration = () => {
   const [meter, setMeter] = useState('');
   return (
@@ -11,10 +12,10 @@ export const ControlConfiguration = () => {
     <div className="table-wrapper">
       <br></br>
       <div style={{display:'flex', justifyContent: "center"}}>
-      <button className='light-grey' style={{border:"1px solid rgba(0, 0, 0, 0.5)",fontSize:"15px" ,width:"100px", color: 'green'  }} onClick={(e) => setMeter('iot')}>
+      <button className='light-grey' style={buttonStyle} onClick={(e) => setMeter('iot')}>
         IOT
       </button>
-      <button className='light-grey' style={{border:"1px solid rgba(0, 0, 0, 0.5)",fontSize:"15px" ,width:"100px", color: 'green'  }} onClick={(e) => setMeter('meter')}>
+      <button className='light-grey' style={buttonStyle} onClick={(e) => setMeter('meter')}>
         Meter
       </button>
       </div>
@@ -22,5 +23,13 @@ export const ControlConfiguration = () => {
       
     </div>
   )
+}
+const buttonStyle = {
+  border:"1px solid rgba(0, 0, 0, 0.5)",
+  fontSize:"15px" ,
+  width:"10em",
+  color: 'white',
+  background: "teal",
+  padding: "10px"
 }
 

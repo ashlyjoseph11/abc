@@ -8,7 +8,14 @@ import settings from '../../assets/images/settings-icon.png'
 import Box from '@mui/material/Box'
 import { useState } from 'react'
 
-
+const buttonStyle = {
+  border:"1px solid rgba(0, 0, 0, 0.5)",
+  fontSize:"15px" ,
+  width:"10em",
+  color: 'white',
+  background: "teal",
+  padding: "10px"
+}
 function ControlIOT() {
   const [iot, setIOT] = useState('Light');
   const [setting, setSetting] = useState('');
@@ -20,10 +27,10 @@ function ControlIOT() {
     <div className="table-wrapper">
       <br></br>
       <div style={{display:'flex', justifyContent: "center"}}>
-      <button className='light-grey' style={{border:"1px solid rgba(0, 0, 0, 0.5)",fontSize:"15px" ,width:"100px", color: 'green'  }} onClick={(e) => setIOT('Light')}>
+      <button className='light-grey' style={buttonStyle} onClick={(e) => setIOT('Light')}>
         Light Meter
       </button>
-      <button className='light-grey' style={{ border:"1px solid rgba(0, 0, 0, 0.5)",fontSize:"15px" ,width:"100px", color: 'green' }} onClick={(e) => setIOT('Fan')}>
+      <button className='light-grey' style={buttonStyle} onClick={(e) => setIOT('Fan')}>
         Fan Meter
       </button>
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Chart } from "react-google-charts";
-import energy from '../../assets/images/meter.jpg'
+import energy from '../../assets/images/water-meter-icon.png'
 
 const parameters = [
   {title : "Work Status:",
@@ -105,7 +105,7 @@ export const options = {
 };
 
 const meterStyle = {
-  
+
 }
 const meterListStyle = {
   display: "inline-grid",
@@ -120,12 +120,12 @@ const para = {
   marginTop: '8em'
 }
 
-export const MonitorTracking = () => {
+export const WaterMeterMonitorTracking = () => {
 
 const [electricMeterUser , setElectricMeterUser] = useState([]);
 
 useEffect(() => {
-  axios.get("http://localhost:3001/api/simulated/getSimulateddetails/?type=ElectricMeter").
+  axios.get("http://localhost:3001/api/simulated/getSimulateddetails/?type=WaterMeter").
   then(async (res) => {
       if (res.status == 200) {
         if (res) {
@@ -176,7 +176,7 @@ useEffect(() => {
         chartType="Line"
         width="78em"
         height="300px"
-        style={{ position: 'relative', left: '10em' }}
+        style={{ position: 'relative', left: '2em' }}
         data={data}
         options={options}
       />
