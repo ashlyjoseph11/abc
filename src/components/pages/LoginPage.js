@@ -53,7 +53,7 @@ export const LoginPage = () => {
 
     return (
         <div className="text-center m-5-auto" style={loginStyle}>
-            <h2>Sign in to us</h2>
+            <h2 style={{marginLeft: "3em"}}>Sign in to us</h2>
             <form>
                 <p>
                     <label style={{color: "teal"}}>Enter your email address</label><br/>
@@ -65,7 +65,7 @@ export const LoginPage = () => {
                     <input type="password" name="password" required onChange={(e) => { setPassword(e.target.value); }}/>
                 </p>
                 <p>
-                    <button id="sub_btn" type="submit" onClick={login}>Login</button>
+                    <button style={buttonStyle} id="sub_btn" type="submit" onClick={login}>Login</button>
                 </p>
             </form>
             <MyToast show={showToast} handleClose={() => setShowToast(false)} text={toastText} />
@@ -79,5 +79,12 @@ const loginStyle = {
     width: "36em",
     marginLeft: "39em",
     marginTop: "10em",
-    borderRadius: "5px"
+    borderRadius: "8px",
+    padding: "10px"
+}
+const buttonStyle = {
+  width: "10em",
+  padding: "10px",
+  color: "white",
+  background: "teal"
 }
