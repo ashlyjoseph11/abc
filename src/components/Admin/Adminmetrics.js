@@ -9,16 +9,16 @@ export const Adminmetrics = () => {
   return (
     <div className='text-left'>
     <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Dropdown.Toggle style={{width: "10em", background: "teal", color: "white"}} variant="success" id="dropdown-basic">
         SJSU buildings
       </Dropdown.Toggle>
 
-      <Dropdown.Menu>
-        <Dropdown.Item >KING </Dropdown.Item>
-        <Dropdown.Item >IRC</Dropdown.Item>
-        <Dropdown.Item >ADM</Dropdown.Item>
-        <Dropdown.Item >YUH</Dropdown.Item>
-        <Dropdown.Item >SPC</Dropdown.Item>
+      <Dropdown.Menu style={{width: "10em", background: "teal", color: "white"}}>
+        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}} >KING </Dropdown.Item>
+        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}} >IRC</Dropdown.Item>
+        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}}>ADM</Dropdown.Item>
+        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}}>YUH</Dropdown.Item>
+        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}}>SPC</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
     <div style={{display: 'flex'}}>
