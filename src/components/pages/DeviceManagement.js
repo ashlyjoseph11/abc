@@ -32,7 +32,9 @@ const fdivStyle = {
     width : "max-content",
 }
 const textStyle = {
-  textTransform: "uppercase"
+  textTransform: "uppercase",
+  width: "10em",
+  marginRight: "3em"
 }
 
 const dummy_data = {
@@ -241,21 +243,21 @@ export const DeviceManagement = () => {
             <div><label>Location:</label></div>
             <div><input type="text" name = "dloc"style={textStyle}  value = {location} onChange = {(e) => (setlocation(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Model:</label></div>
-            <div><input type="text" name = "dmodel" value = {model} onChange = {(e) => (setmodel(e.target.value))} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dmodel" style={textStyle} value = {model} onChange = {(e) => (setmodel(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Amperage Capacity:</label></div>
-            <div><input type="text" name = "dacap" value = {electricCapacity} onChange = {(e) => (setelectricCapacity(e.target.value))} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dacap" style={textStyle} value = {electricCapacity} onChange = {(e) => (setelectricCapacity(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Installation Method:</label></div>
-            <div><input type="text" name = "dins" value = {installationMethod} onChange = {(e) => (setelectricCapacity(e.target.value))} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dins" style={textStyle} value = {installationMethod} onChange = {(e) => (setelectricCapacity(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Measurement Accuracy:</label></div>
-            <div><input type="text" name = "dmeaacc" value = {meausurementAccuracy} onChange = {(e) => (setmeausurementAccuracy(e.target.value))} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dmeaacc" style={textStyle} value = {meausurementAccuracy} onChange = {(e) => (setmeausurementAccuracy(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Installation Date:</label></div>
-            <div><input type="text" name = "dins" value = {installationDate} onChange = {(e) => (setinstallationDate(e.target.value))} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dins" style={textStyle} value = {installationDate} onChange = {(e) => (setinstallationDate(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Dimensions:</label></div>
-            <div><input type="text" name = "ddime" value = {dimensions} onChange = {(e) => (setdimensions(e.target.value))} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "ddime" style={textStyle} value = {dimensions} onChange = {(e) => (setdimensions(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Deployment Date:</label></div>
-            <div><input type="text" name = "ddep" value = {deploymentDate} onChange = {(e) => (setdeploymentDate(e.target.value))} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "ddep"style={textStyle}  value = {deploymentDate} onChange = {(e) => (setdeploymentDate(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Power:</label></div>
-            <div><input type="text" name = "dpower" value = {power} onChange = {(e) => (setPower(e.target.value))} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dpower" style={textStyle} value = {power} onChange = {(e) => (setPower(e.target.value))} disabled = {isdisabled}/></div>
             <button style={formButton}>Confirm</button>
         </form>
         </>
