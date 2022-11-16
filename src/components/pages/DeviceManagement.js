@@ -233,29 +233,29 @@ export const DeviceManagement = () => {
         <button style = {{width : 'fit-content', color: "white", background: "teal", padding: "10px", marginLeft: "1.5em"}} onClick={addmeter}>Add a Device + </button>
         <form style = {hideform ? noneStyle:blockstyle}>
             <div><label>Device Name:</label></div>
-            <div><input name = "dname" style={textStyle} value = {electricMeterName} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dname" style={textStyle} value = {electricMeterName} onChange = {(e) => (setelectricMeterName(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Device ID:</label></div>
-            <div><input name = "did" style={textStyle} value = {electricMeterId} disabled/></div>
+            <div><input type="text" name = "did" style={textStyle} value = {electricMeterId} disabled/></div>
             <div><label>Manufacturer:</label></div>
-            <div><input name = "dman" style={textStyle} value = {manufacturer} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dman" style={textStyle} value = {manufacturer} onChange = {(e) => (setmanufacturer(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Location:</label></div>
-            <div><input name = "dloc"style={textStyle}  value = {location} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dloc"style={textStyle}  value = {location} onChange = {(e) => (setlocation(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Model:</label></div>
-            <div><input name = "dmodel" value = {model} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dmodel" value = {model} onChange = {(e) => (setmodel(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Amperage Capacity:</label></div>
-            <div><input name = "dacap" value = {electricCapacity} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dacap" value = {electricCapacity} onChange = {(e) => (setelectricCapacity(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Installation Method:</label></div>
-            <div><input name = "dins" value = {installationMethod} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dins" value = {installationMethod} onChange = {(e) => (setelectricCapacity(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Measurement Accuracy:</label></div>
-            <div><input name = "dmeaacc" value = {meausurementAccuracy} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dmeaacc" value = {meausurementAccuracy} onChange = {(e) => (setmeausurementAccuracy(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Installation Date:</label></div>
-            <div><input name = "dins" value = {installationDate} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dins" value = {installationDate} onChange = {(e) => (setinstallationDate(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Dimensions:</label></div>
-            <div><input name = "ddime" value = {dimensions} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "ddime" value = {dimensions} onChange = {(e) => (setdimensions(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Deployment Date:</label></div>
-            <div><input name = "ddep" value = {deploymentDate} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "ddep" value = {deploymentDate} onChange = {(e) => (setdeploymentDate(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Power:</label></div>
-            <div><input name = "dpower" value = {power} disabled = {isdisabled}/></div>
+            <div><input type="text" name = "dpower" value = {power} onChange = {(e) => (setPower(e.target.value))} disabled = {isdisabled}/></div>
             <button style={formButton}>Confirm</button>
         </form>
         </>
