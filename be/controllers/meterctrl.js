@@ -35,7 +35,7 @@ router.post('/addMeterdetails', async (req, res) => {
   });
 
 
-  router.get('/deleteMeter', async (req, res) => {
+  router.delete('/deleteMeter', async (req, res) => {
     const data = req.query;
     //console.log('here.....');
     //let data = req.body;
