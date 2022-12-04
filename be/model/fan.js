@@ -7,7 +7,7 @@ const fanSchema = new mongoose.Schema(
     // },
     // airlineName: String,
     fanId:{
-        type: Number,
+        type: String,
         required: true,
     },
     fanName: {
@@ -57,7 +57,7 @@ const fanSchema = new mongoose.Schema(
         required: true,
     },
     userId: {
-        type: Number,
+        type: String,
         required: true,
     },
     cloudStatus: {

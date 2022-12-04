@@ -11,7 +11,8 @@ class LightServices {
                         const query = {
                                 userId : data.userId,                             
                         }
-                    let foundLights = await Light.find({"userId": query["userId"] });
+                    let foundLights = await Light.find({"userId": query["userId"] });           
+                   // const foundLights =  await Light.findById(id); 
                     if(foundLights != [])
                     {
                         console.log(foundLights);
@@ -31,32 +32,18 @@ class LightServices {
         static updateLightdetails = async (id,data) => {
                 console.log(data)
                     try {
-                            const query = {
-                                    lightId : id.lightId,                             
+                         
+                        const query = { 
+                                _id: id
+                            };
+                            
+                            const updatedLight = await Fan.findOneAndUpdate(query,data);
+                    
+                            if(updatedLight)
+                            {
+                                return { updatedLight }
                             }
-                            const newvalues = { $set: {lightName: data.lightName,
-                              marker: data.marker,
-                              model: data.model,
-                              location: data.location,
-                              illumination: data.illumination,
-                              illuminationTime: data.illuminationTime,
-                              wattage: data.wattage,
-                              design: data.design,
-                              deploymentDate: data.deploymentDate,
-                              installationDate: data.installationDate,
-                              power: data.power,
-                              cloudStatus: data.cloudStatus,
-                              workingStatus: data.workingStatus,
-                              activeStatus: data.activeStatus,} };
-                        let updatedLight = await Light.updateOne({"LightId": query["LightId"] }, newvalues);
-                        if(updatedLight)
-                        {
-                            console.log(updatedLight);
-                            return updatedLight;
-                        }
-                        else{
-                                console.log(updatedLight);
-                        }                        
+                                  
                     }
                     catch(err){
                             console.log(err);
@@ -65,36 +52,30 @@ class LightServices {
             }
             // we dont have a ctrl api for this yet we are confused if we will use post or put or patch....
 
+
             static deleteLightdetails = async (data) => {
-                console.log(data)
-                    try {
-                            const query = {
-                                    lightId : data.lightId,                             
-                            }
-                        await Light.deleteOne({"lightId": query["lightId"] }, function(err,res){                        
-                        if(err)
-                        {
-                            console.log(err);
-                            return false;
-                        }
-                        else{
-                                console.log('res:' + res);
-                        }
-                        }); 
-                        return true;                       
-                    }
-                    catch(err){
-                            console.log(err);
-                            console.log("Some unexpected error occured while logging in")
-                    }
+                try {
+                    const query = { 
+                        _id: data.id
+                    };
+                    
+                    const oldLight = await Light.remove(query);
+            
+                    console.log(oldLight)
+                    return {oldLight};
+                                       
+                }
+                catch(err){
+                        console.log(err);
+                        console.log("Some unexpected error occured while deleting light")
+                }
             }
 
 
-            static addLightdetails = async (id,data) => {
+            static addLightdetails = async (data) => {
                 console.log(data)
                     try {
                             const newvalues = { 
-                              lightId : data.lightId,
                               lightName: data.lightName,
                               marker: data.marker,
                               model: data.model,
@@ -111,21 +92,10 @@ class LightServices {
                               activeStatus: data.activeStatus,
                               userId: id.userId
                         };
-                        console.log(newvalues);
-                        await Light.insertMany(newvalues, function(err, res){
-                        if(err)
-                        {
-                            console.log('insertion is givng error');
-                            console.log(err);
-                            return false;
-                        }
-                        else{
-                                console.log('inserted: ' + res.insertedCount);
-                                console.log('res:' + res);
-                        }
-                        
-                        });
-                        return true;                     
+                        console.log(data);
+                        const newLight = new Fan(data);
+                        await newLight.save()
+                        return {newLight};                   
                     }
                     catch(err){
                             console.log(err);

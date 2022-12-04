@@ -7,10 +7,10 @@ const router = express.Router();
 
 
 router.get('/getLightDetails', async (req, res) => {
-    let userId = req.query;
-    const response = {};
+  const  data  = req.query;
+  const response = {};
     try {
-      let result = await LightServices.getLightdetails(userId);
+      let result = await LightServices.getLightdetails(data);
   
       if (result) {
         response.success = true;
@@ -32,11 +32,13 @@ router.get('/getLightDetails', async (req, res) => {
     }
   });
 
+  
+
   router.delete('/deleteLightDetails', async (req, res) => {
-    let lightId = req.query;
+    const data = req.query;
     const response = {};
     try {
-      let result =  LightServices.deleteLightdetails(lightId);
+      let result =  LightServices.deleteLightdetails(data);
   
       if (result) {
         response.success = true;
@@ -58,10 +60,10 @@ router.get('/getLightDetails', async (req, res) => {
   });
 
   router.put('/updateLightDetails', async (req, res) => {
-    let lightId = req.query;
+    const  {id}  = req.query;
     const response = {};
     try {
-      let result = await LightServices.updateLightdetails(lightId,req.body);
+      let result = await LightServices.updateLightdetails(id,req.body);
   
       if (result) {
         response.success = true;
@@ -83,13 +85,12 @@ router.get('/getLightDetails', async (req, res) => {
   });
 
   router.post('/addLightDetails', async (req, res) => {
-    //const data = req.body;
-    let userId = req.query;
+    let data = req.body;
 
     const response = {};
     try {
         // returns the created user id
-        let result = await LightServices.addLightdetails(userId,req.body);   
+        let result = await LightServices.addLightdetails(data);   
   
       if (result) {
         response.success = true;
@@ -124,7 +125,7 @@ router.get('/getLightDetails', async (req, res) => {
    //   console.log(result);
       if (result) {
         response.success = true;
-        response.user = result;
+        response.user = "Cloud status of the light is sucessfully updated";
         response.status = '200';
         res.status(200).send(response);
       } else {
@@ -154,7 +155,7 @@ router.get('/getLightDetails', async (req, res) => {
    //   console.log(result);
       if (result) {
         response.success = true;
-        response.user = result;
+        response.user = "Working status of the light is sucessfully updated";
         response.status = '200';
         res.status(200).send(response);
       } else {
@@ -184,7 +185,7 @@ router.get('/getLightDetails', async (req, res) => {
    //   console.log(result);
       if (result) {
         response.success = true;
-        response.user = result;
+        response.user = "Active status of the light is sucessfully updated";
         response.status = '200';
         res.status(200).send(response);
       } else {

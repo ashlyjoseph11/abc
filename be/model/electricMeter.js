@@ -27,7 +27,23 @@ const electricMeterSchema = new mongoose.Schema(
     installationMethod: {
       type: String,
     },
-    meausurementAccuracy: {
+    userId: {
+      type: String,
+      required: true,
+  },
+  cloudStatus: {
+      type: Number,
+      required: true,
+  },
+  workingStatus: {
+      type: Number,
+      required: true,
+  },
+  activeStatus: {
+      type: Number,
+      required: true,
+  },   
+  meausurementAccuracy: {
         type: String,
       },
     dimensions: {
