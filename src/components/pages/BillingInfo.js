@@ -19,7 +19,7 @@ export const BillingInfo = () => {
       <br></br>
       <h2>Billing Information</h2>
       <div style={{ display: "flex" }}>
-        <h4>Device List</h4>
+        <h4>Usage details</h4>
       </div>
 
       <BillingTable></BillingTable>
@@ -38,17 +38,7 @@ export const BillingInfo = () => {
             </button>
             </div>
         </Link>
-       
-      
-      {/* <div style={{display:'flex', justifyContent: "center"}}>
-      <button disabled={true} style={{fontSize:"15px" ,width:"100px", color:"green" }} onClick={(e) => setMeter('iot')}>
-        IOT
-      </button>
-      <button style={{fontSize:"15px" ,width:"100px", color: "green" }} onClick={(e) => setMeter('meter')}>
-        Meter
-      </button>
-      </div>
-      {meter === 'meter'?<ControlMeter/>:null} */}
+
       
     </div>
   )

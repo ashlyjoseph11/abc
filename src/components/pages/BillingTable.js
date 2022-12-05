@@ -26,13 +26,7 @@ const columns = [
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
-  {
-    id: 'density',
-    label: 'Density',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
+  
 ];
 
 function createData(name, code, population, size) {
@@ -41,13 +35,18 @@ function createData(name, code, population, size) {
 }
 
 const rows = [
-  createData('Lamp1', '75', 11, 3287263),
-  createData('Fan1', '110', 12, 9596961),
-  createData('Lamp2', '88', 11, 301340),
-  createData('Fan2', '112', 12, 9833520),
-  createData('Lamp3', '111', 11, 9984670),
-  createData('Fan3', '22', 14, 7692024),
-
+  createData('Light1', '10', 20, 200),
+  createData('Fan1', '110', 2, 220),
+  createData('Light2', '88', 1, 88),
+  createData('Fan4', '222', 2, 444),
+  createData('Light6', '111', 5, 555),
+  createData('Fan7', '22', 14, 308),
+  createData('Light10', '100', 7, 700),
+  createData('Light10', '60', 4, 240),
+  createData('Light10', '75', 4, 300),
+  createData('Light10', '320', 1, 320),
+  createData('Light10', '750', 1, 750),
+  createData('Light10', '15', 10, 150)
 ];
 
 export default function BillingTable() {
@@ -65,7 +64,7 @@ export default function BillingTable() {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 460 }}>
+      <TableContainer sx={{ maxHeight: 660 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead >
             <TableRow style ={{}} >
@@ -73,7 +72,7 @@ export default function BillingTable() {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth , color: 'black', backgroundColor: '#f3eeee'}}
+                  style={{ minWidth: column.minWidth , color: 'black', backgroundColor: '#89D5D2'}}
                 >
                   {column.label}
                 </TableCell>
@@ -102,17 +101,6 @@ export default function BillingTable() {
           </TableBody>
         </Table>
       </TableContainer>
-
-      
-      {/* <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      /> */}
     </Paper>
   );
 }

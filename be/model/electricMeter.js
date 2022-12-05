@@ -50,12 +50,10 @@ const electricMeterSchema = new mongoose.Schema(
       type: String,
     },
     deploymentDate: {
-        type: Date,
-        default: Date.now,
+        type: String,
     },
     installationDate: {
-        type: Date,
-        default: Date.now,
+        type: String,
     },
     power: {
         type: String,

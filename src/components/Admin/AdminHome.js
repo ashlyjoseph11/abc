@@ -12,14 +12,12 @@ export const AdminHome = () => {
       </div> 
       <div>     
       <h3>Active IoT Stations</h3><br/>      
-      <h4><span class="logged-in">●</span> KING </h4>
-      <h4><span class="logged-in">●</span> IRC </h4>
-      <h4><span class="logged-in">●</span> ADM </h4>
-      <h4><span class="logged-in">●</span> DBH </h4>
-      <h4><span class="logged-in">●</span> SPC </h4>
-      <h4><span class="logged-in">●</span> CCB </h4>
-      <h4><span class="logged-in">●</span> YUH</h4>
-      <h4><span class="logged-in">●</span> SWC</h4>
+      <h4><span class="logged-in">●</span> LIB </h4>
+      <h4><span class="logged-in">●</span> SCI </h4>
+      <h4><span class="logged-in">●</span> ENG </h4>
+      <h4><span class="logged-in">●</span> SPT </h4>
+      <h4><span class="logged-in">●</span> PKG </h4>
+      <h4><span class="logged-in">●</span> SVC </h4>
       <Map/>
       </div>
     </div>

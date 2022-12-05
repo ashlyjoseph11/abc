@@ -10,58 +10,51 @@ export const Adminmetrics = () => {
     <div className='text-left'>
     <Dropdown>
       <Dropdown.Toggle style={{width: "10em", background: "teal", color: "white"}} variant="success" id="dropdown-basic">
-        SJSU buildings
+        SJSU  buildings
       </Dropdown.Toggle>
 
       <Dropdown.Menu style={{width: "10em", background: "teal", color: "white"}}>
-        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}} >KING </Dropdown.Item>
-        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}} >IRC</Dropdown.Item>
-        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}}>ADM</Dropdown.Item>
-        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}}>YUH</Dropdown.Item>
-        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}}>SPC</Dropdown.Item>
+        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}} >LIBRARY</Dropdown.Item>
+        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}}>SCIENCE</Dropdown.Item>
+        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}}>ADMINISTRATION</Dropdown.Item>
+        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}}>ENGINEERING</Dropdown.Item>
+        <Dropdown.Item style={{width: "10em", background: "teal", color: "white"}}>SPORTS</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
     <div style={{display: 'flex'}}>
       <div className='guage'>
-      <span> Relative Humidity</span>
+      <span style={{fontSize:'30px'}}>Humiditity </span>
     <GaugeChart  
           animate={true} 
           nrOfLevels={10} 
-          percent={0.70} 
-          needleColor="#345243" 
+          percent={0.50}
+          colors={['#008000']} 
+          needleColor="#35243" 
           textColor={'black'}
+          fontSize = {65} 
         /> </div>
         <div className='guage'>
-        <span> Temparature</span>
-        <Thermometer width="100px" height="200px" steps={5} minValue={1000} maxValue={40000} currentValue={8500}> 
-        </Thermometer> </div>
-        <div className='guage' align="center">
-          <br/>
-        <span> Soil PH value</span>  <br/>        
-        <p>4.6</p>
-        <span>Acidic</span>   </div>
+        <span style={{fontSize:'30px'}}> Temperature </span>
+        <Thermometer width="150px" height="300px" steps={10} minValue={10} maxValue={100} currentValue={20}> 
+        </Thermometer>
+         </div>
+        
       </div>
   
       <div style={{display: 'flex'}}>
+        
         <div className='guage'>
-        <span> Soil Relative Humidity</span>
-      <GaugeChart  
-          animate={true} 
-          nrOfLevels={10} 
-          percent={0.65} 
-          needleColor="#345243" 
-          textColor={'black'}
-        /> </div>
+        <span style={{fontSize:'30px'}}> Light luminosity </span>
+        <br/>
+        <Line percent={50} strokeWidth={2} strokeColor="orange" /> 
+        <IoBulbOutline style={{ fontSize: '220px' }}/></div>
         <div className='guage'>
-        <span> Luminosity</span> <br/>
-        <Line percent={50} strokeWidth={8} strokeColor="yellow" /> 
-        <IoBulbOutline style={{ fontSize: '50px' }}/></div>
-        <div className='guage'>
-        <span> Fan speed</span>
+        <span style={{fontSize:'30px'}}> Fan speed </span>
         <GaugeChart  
           animate={true} 
-          nrOfLevels={10} 
-          percent={0.40000} 
+          nrOfLevels={5} 
+          colors={['#FF7F50']}
+          arcPadding={0.02} 
           needleColor="#345243" 
           textColor={'black'}
         /> </div>

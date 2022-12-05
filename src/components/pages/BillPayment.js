@@ -19,19 +19,6 @@ export const BillPayment = () => {
       <h2>Billing Information</h2>
       <h3>Bill Payment</h3>
       <BillingCard ></BillingCard>
-
-
-      
-      {/* <div style={{display:'flex', justifyContent: "center"}}>
-      <button disabled={true} style={{fontSize:"15px" ,width:"100px", color:"green" }} onClick={(e) => setMeter('iot')}>
-        IOT
-      </button>
-      <button style={{fontSize:"15px" ,width:"100px", color: "green" }} onClick={(e) => setMeter('meter')}>
-        Meter
-      </button>
-      </div>
-      {meter === 'meter'?<ControlMeter/>:null} */}
-      
     </div>
   )
 }
