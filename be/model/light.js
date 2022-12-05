@@ -7,7 +7,8 @@ const lightSchema = new mongoose.Schema(
     // },
     // airlineName: String,
     lightId:{
-        type:mongoose.Schema.Types.ObjectId,
+      type: String,
+      required: true,    
     },
     lightName: {
       type: String,
@@ -42,19 +43,35 @@ const lightSchema = new mongoose.Schema(
       required: false,
     },
     deploymentDate: {
-        type: Date,
-        default: Date.now,
-        required: true,
-    },
-    installationDate: {
-        type: Date,
-        default: Date.now,
-        required: true,
-    },
+      type: Date,
+      default: Date.now,
+      required: false,
+  },
+  installationDate: {
+      type: Date,
+      default: Date.now,
+      required: false,
+  },
     power: {
         type: Number,
         required: true,
     },
+    userId: {
+      type: String,
+      required: true,
+  },
+    cloudStatus: {
+      type: Number,
+      required: true,
+  },
+  workingStatus: {
+      type: Number,
+      required: true,
+  },
+  activeStatus: {
+      type: Number,
+      required: true,
+  },
 
   },
   { timestamps: true }

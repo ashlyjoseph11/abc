@@ -37,7 +37,7 @@ class LightServices {
                                 _id: id
                             };
                             
-                            const updatedLight = await Fan.findOneAndUpdate(query,data);
+                            const updatedLight = await Light.findOneAndUpdate(query,data);
                     
                             if(updatedLight)
                             {
@@ -76,6 +76,7 @@ class LightServices {
                 console.log(data)
                     try {
                             const newvalues = { 
+                                lightId: data.lightId,
                               lightName: data.lightName,
                               marker: data.marker,
                               model: data.model,
@@ -90,10 +91,10 @@ class LightServices {
                               cloudStatus: data.cloudStatus,
                               workingStatus: data.workingStatus,
                               activeStatus: data.activeStatus,
-                              userId: id.userId
+                              userId: data.userId
                         };
                         console.log(data);
-                        const newLight = new Fan(data);
+                        const newLight = new Light(data);
                         await newLight.save()
                         return {newLight};                   
                     }
@@ -145,7 +146,7 @@ class LightServices {
                                       return updatedLight;
                                   }
                                   else{
-                                          console.log(updatedFan);
+                                          console.log(updatedLight);
                                   }                        
                               }
                       catch(err){
