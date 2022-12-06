@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 const fanSchema = new mongoose.Schema(
   {
-    // airline_id:{
-    //     type:mongoose.Schema.Types.ObjectId,
-    //     ref:"airline"
-    // },
-    // airlineName: String,
     fanId:{
         type: String,
         required: true,
@@ -69,14 +64,6 @@ const fanSchema = new mongoose.Schema(
         required: true,
     },
     activeStatus: {
-        type: Number,
-        required: true,
-    },
-    weeklyUsage: {
-        type: Number,
-        required: true,
-    },
-    monthlyUsage: {
         type: Number,
         required: true,
     },

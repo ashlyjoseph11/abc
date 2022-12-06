@@ -34,6 +34,32 @@ const router = express.Router();
     }
   });
 
+  router.get('/getSimulatedFan', async (req, res) => {
+    let id = req.query.id;
+    const response = {};
+    try {
+      let result = await SimulatedFanServices.getSimulatedFan(id);
+      
+      if (result) {
+        response.success = true;
+        response.fan = result;
+        response.status = '200';
+        res.status(200).send(response);
+      } else {
+        response.success = false;
+        response.error = 'some error occured...';
+        response.status = '400';
+        res.status(400).send(response);
+      }
+    } catch (e) {
+      console.log(e);
+      response.success = false;
+      response.error = 'Some error occurred. Please try again later';
+      response.status = '500';
+      res.status(500).send(response);
+    }
+  });
+
   router.post('/addSimulatedFan', async (req, res) => {
     //const data = req.body;
     console.log('here.....');
@@ -89,8 +115,5 @@ const router = express.Router();
       res.status(500).send(response);
     }
   });
-
-
- 
-
+  
   module.exports = router;

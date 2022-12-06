@@ -8,31 +8,6 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true, 
-  },
-  role:{
-    type: String,
-    default:null,
-  },
-  username:{
-    type: String,
-    default:null,
-  },
-  profileURL:{
-    type:String,
-    default:"1652318743137-default.png"
-  },
-  location:{  
-    type:String,
-    default:"San Jose"
-  },
-  meter:{  
-    electricMeter: [],
-    waterMeter: [],
-  },
-  iot:{  
-    fan: [],
-    light: [],
-    sensor: [],
   }
 }, { timestamps: true });
 

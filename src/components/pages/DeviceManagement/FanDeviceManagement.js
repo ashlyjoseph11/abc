@@ -59,11 +59,9 @@ export const FanDeviceManagement = () => {
     const [dimensions, setdimensions] = useState("");
     const [deploymentDate, setdeploymentDate] = useState("");
     const [installationDate, setinstallationDate] = useState("");
-    const [cloudStatus, setcloudStatus] = useState("");
-    const [workingStatus, setworkingStatus] = useState("");
-    const [activeStatus, setactiveStatus] = useState("");
-    const [monthlyUsage, setmonthlyUsage] = useState("");
-    const [weeklyUsage, setweeklyUsage] = useState("");
+    const [cloudStatus, setcloudStatus] = useState(1);
+    const [workingStatus, setworkingStatus] = useState(1);
+    const [activeStatus, setactiveStatus] = useState(1);
     const [userId, setuserId] = useState("637220a2858bb384838f8286");
     
 
@@ -113,8 +111,6 @@ export const FanDeviceManagement = () => {
         setcloudStatus(Fan.cloudStatus);
         setworkingStatus(Fan.workingStatus);
         setactiveStatus(Fan.activeStatus);
-        setmonthlyUsage(Fan.monthlyUsage);
-        setweeklyUsage(Fan.weeklyUsage);
         setuserId(Fan.userId);
 
                
@@ -176,8 +172,6 @@ export const FanDeviceManagement = () => {
         setcloudStatus("");
         setworkingStatus("");
         setactiveStatus("");
-        setmonthlyUsage("");
-        setweeklyUsage("");
         setuserId("");
        }
 
@@ -209,11 +203,9 @@ export const FanDeviceManagement = () => {
           "deploymentDate":deploymentDate,
           "installationDate":installationDate,
           "power":power,
-          "cloudStatus": cloudStatus,
-          "workingStatus": workingStatus,
-          "activeStatus" : activeStatus,
-          "monthlyUsage" : monthlyUsage,
-          "weeklyUsage" : weeklyUsage,
+          "cloudStatus": 1,
+          "workingStatus": 1,
+          "activeStatus" : 1,
           "userId" : "637220a2858bb384838f8286"
         }
 
@@ -249,8 +241,6 @@ export const FanDeviceManagement = () => {
           "cloudStatus": cloudStatus,
           "workingStatus": workingStatus,
           "activeStatus" : activeStatus,
-          "monthlyUsage" : monthlyUsage,
-          "weeklyUsage" : weeklyUsage,
           "userId" : userId
         }
         console.log(updated_data);
@@ -320,16 +310,6 @@ export const FanDeviceManagement = () => {
             <div><input type="text" name = "ddep"style={textStyle}  value = {deploymentDate} onChange = {(e) => (setdeploymentDate(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Installation Date:</label></div>
             <div><input type="text" name = "ddep"style={textStyle}  value = {installationDate} onChange = {(e) => (setinstallationDate(e.target.value))} disabled = {isdisabled}/></div>
-            <div><label>Cloud Status:</label></div>
-            <div><input type="text" name = "dpower" style={textStyle} value = {cloudStatus} onChange = {(e) => (setcloudStatus(e.target.value))} disabled = {isdisabled}/></div>
-            <div><label>Active Status:</label></div>
-            <div><input type="text" name = "ddep"style={textStyle}  value = {activeStatus} onChange = {(e) => (setactiveStatus(e.target.value))} disabled = {isdisabled}/></div>
-            <div><label>Working status:</label></div>
-            <div><input type="text" name = "dpower" style={textStyle} value = {workingStatus} onChange = {(e) => (setworkingStatus(e.target.value))} disabled = {isdisabled}/></div>
-            <div><label>Monthly Usage:</label></div>
-            <div><input type="text" name = "ddep"style={textStyle}  value = {monthlyUsage} onChange = {(e) => (setmonthlyUsage(e.target.value))} disabled = {isdisabled}/></div>
-            <div><label>Weekly Usage:</label></div>
-            <div><input type="text" name = "dpower" style={textStyle} value = {weeklyUsage} onChange = {(e) => (setweeklyUsage(e.target.value))} disabled = {isdisabled}/></div>
             <div><label>Power:</label></div>
             <div><input type="text" name = "dpower" style={textStyle} value = {power} onChange = {(e) => (setPower(e.target.value))} disabled = {isdisabled}/></div>
            <button style={showsubmit? formButton:noneStyle} type='submit'>Submit</button>

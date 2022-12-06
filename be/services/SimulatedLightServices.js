@@ -1,4 +1,5 @@
 const simulated_light = require("../model/simulated_light");
+const { IoTServices } = require("./IoTServices");
 
 class SimulatedLightServices {
     static getSimulatedLights = async(id) => {
@@ -21,11 +22,33 @@ class SimulatedLightServices {
                 }
     }
 
+    static getSimulatedLight = async(id) => {
+        console.log(id)
+                try {
+                    let foundLight = await simulated_light.find({"_id": id });
+                    if(foundLight != [])
+                    {
+                        console.log(foundLight);
+                        return foundLight;
+                    }
+                    else{
+                        console.log('no light found');
+                    }
+                    
+                }
+                catch(err){
+                        console.log(err);
+                        console.log("Some unexpected error occured while logging in")
+                }
+    }
+
     static addSimulatedLight = async (data) => {
         console.log(data)
         try {
             const newFan = new simulated_light(data);
             await newFan.save()
+            const simulatedLights = await this.getSimulatedLights(newFan.userId);
+            await IoTServices.publishonIoT(simulatedLights, 'light_device');
             return {newFan};
                                
         }
@@ -45,6 +68,8 @@ class SimulatedLightServices {
 
             if(updatedLight)
             {
+                const simulatedLights = await this.getSimulatedLights(newFan.userId);
+                await IoTServices.publishonIoT(simulatedLights, 'light_device');
                 return { updatedLight }
             }
                                

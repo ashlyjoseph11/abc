@@ -1,6 +1,7 @@
 const { type } = require("express/lib/response");
 const Light = require("../model/light");
 const { default: mongoose } = require("mongoose");
+const { SimulatedLightServices } = require("./SimulatedLightServices")
 
 class LightServices {
 
@@ -50,7 +51,6 @@ class LightServices {
                             console.log("Some unexpected error occured while logging in")
                     }
             }
-            // we dont have a ctrl api for this yet we are confused if we will use post or put or patch....
 
 
             static deleteLightdetails = async (data) => {
@@ -96,6 +96,21 @@ class LightServices {
                         console.log(data);
                         const newLight = new Light(data);
                         await newLight.save()
+
+                        //adding new simulated data for the same
+                        const newSimulatedLight = {
+                                light_name: data.lightName,
+                                light_id: data.lightId,
+                                userId: data.userId,
+                                Voltage: "10V",
+                                Current: "5A",
+                                Luminious_Efficacy: '0',
+                                Luminious_Flux: '0',
+                                Luminious_Intensity: '0',
+                                work_status:"false"
+                        }
+                        let temp = await SimulatedLightServices.addSimulatedLight(newSimulatedLight);
+
                         return {newLight};                   
                     }
                     catch(err){

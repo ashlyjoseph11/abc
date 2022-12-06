@@ -1,5 +1,7 @@
 const { type } = require("express/lib/response");
 const Fan = require("../model/fan");
+const SimulatedFan = require("../model/simulated_fan");
+const { SimulatedFanServices } = require("./SimulatedFanServices")
 const { default: mongoose } = require("mongoose");
 
 class FanServices {
@@ -71,50 +73,45 @@ class FanServices {
                 }
             }
 
-        // this above api is working fone but is showing error messages and then is executing the query.
-        /**
-         * output is :
-        { fanId: '1' }
-        MongooseError: Query was already executed: Fan.deleteOne({ fanId: 1 })
-        at model.Query._wrappedThunk [as _deleteOne] (C:\Users\Home\Desktop\smart_meter\smart-meter\be\node_modules\mongoose\lib\helpers\query\wrapThunk.js:23:19)
-        at C:\Users\Home\Desktop\smart_meter\smart-meter\be\node_modules\kareem\index.js:426:25
-        at processTicksAndRejections (node:internal/process/task_queues:78:11) {
-        originalStack: 'Error\n' +
-        '    at model.Query._wrappedThunk [as _deleteOne] (C:\\Users\\Home\\Desktop\\smart_meter\\smart-meter\\be\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:27:28)\n' +
-        '    at C:\\Users\\Home\\Desktop\\smart_meter\\smart-meter\\be\\node_modules\\kareem\\index.js:426:25\n' +
-        '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
-        }
-        Some unexpected error occured while logging in
-        result:undefined
-        res:[object Object]
-         * 
-         */
-
             static addFandetails = async (data) => {
                 console.log(data)
                     try {
-                            const newvalues = { 
-                              fanId : data.fanId,
-                              fanName: data.fanName,
-                              marker: data.marker,
-                              model: data.model,
-                              location: data.location,
-                              speed: data.speed,
-                              weight: data.weight,
-                              dimensions: data.dimesions,
-                              design: data.design,
-                              deploymentDate: data.deploymentDate,
-                              installationDate: data.installationDate,
-                              power: data.power,
-                              cloudStatus: data.cloudStatus,
-                              workingStatus: data.workingStatus,
-                              activeStatus: data.activeStatus,
-                              monthlyUsage: data.monthlyUsage,
-                              weeklyUsage: data.weeklyUsage,
-                              userId: data.userId
-                        };
+                        //     const newvalues = { 
+                        //       fanId : data.fanId,
+                        //       fanName: data.fanName,
+                        //       marker: data.marker,
+                        //       model: data.model,
+                        //       location: data.location,
+                        //       speed: data.speed,
+                        //       weight: data.weight,
+                        //       dimensions: data.dimesions,
+                        //       design: data.design,
+                        //       deploymentDate: data.deploymentDate,
+                        //       installationDate: data.installationDate,
+                        //       power: data.power,
+                        //       cloudStatus: data.cloudStatus,
+                        //       workingStatus: data.workingStatus,
+                        //       activeStatus: data.activeStatus,
+                        //       monthlyUsage: data.monthlyUsage,
+                        //       weeklyUsage: data.weeklyUsage,
+                        //       userId: data.userId
+                        // };
                         const newFan = new Fan(data);
                         await newFan.save()
+
+                        //adding new simulated data for the same
+                        const newSimulatedFan = {
+                                fan_name: data.fanName,
+                                fan_id: data.fanId,
+                                userId: data.userId,
+                                Voltage: "10V",
+                                Current: "5A",
+                                Fan_Speed: 0,
+                                Speed_Number: 0,
+                                Rotation_Pattern: "clock-wise",
+                                work_status:"false"
+                        }
+                        let temp = await SimulatedFanServices.addSimulatedFan(newSimulatedFan);
                         return {newFan};                   
                     }
                     catch(err){
@@ -122,9 +119,6 @@ class FanServices {
                             console.log("Some unexpected error occured while logging in")
                     }
             }
-
-
-
 
             static updateFanCloudStatus = async (data,reqbody) => {
                 //  console.log(data)

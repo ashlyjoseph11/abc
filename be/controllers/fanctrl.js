@@ -59,7 +59,7 @@ router.get('/getFanDetails', async (req, res) => {
     }
   });
 
-  router.post('/addFandetails', async (req, res) => {EighteenUpRatingOutlined
+  router.post('/addFandetails', async (req, res) => {
     //const data = req.body;
     console.log('here.....');
     let data = req.body;

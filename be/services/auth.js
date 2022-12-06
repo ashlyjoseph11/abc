@@ -26,6 +26,23 @@ class UserAuth {
                         console.log("Some unexpected error occured while logging in")
                 }
         }
+        static getUsers = async (id,data) => {
+                try {
+                    
+                    
+                    const users = await User.find();
+
+                    if(users?.length > 0)
+                    {
+                        return users
+                    }
+                                       
+                }
+                catch(err){
+                        console.log(err);
+                        console.log("Some unexpected error occured while fetching meters")
+                }
+        }
 }
 
 module.exports.UserAuth = UserAuth;

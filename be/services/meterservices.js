@@ -1,6 +1,7 @@
 const { type } = require("express/lib/response");
 const ElectricMeter = require("../model/electricMeter");
 const { default: mongoose } = require("mongoose");
+const {SimulatedMeterServices} = require("./SimulatedMeterServices");
 
 class MeterServices {
 
@@ -23,6 +24,21 @@ class MeterServices {
             const newMeter = new ElectricMeter(data);
         //    const newMeter = new ElectricMeter(query);
             await newMeter.save()
+
+            const newSimulatedMeter = {
+                meter_name: data.fanName,
+                meter_id: data.fanId,
+                userId: data.userId,
+                Voltage: "10V",
+                Current: "5A",
+                Todays_Usage: "0",
+                Last_24hr_Usage: "0",
+                This_Months_Usage: "clock-wise",
+                This_Weeks_Usage: "0",
+                This_Years_Usage: "0",
+                work_status:"false"
+            }
+            let temp = await SimulatedMeterServices.addSimulatedMeter(newSimulatedMeter);
             return {newMeter};
                                
         }

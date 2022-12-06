@@ -7,7 +7,6 @@ const mongoose = require('mongoose');
 const authenticatectrl = require('./controllers/authctrl');
 const fanctrl = require('./controllers/fanctrl');
 const lightctrl = require('./controllers/lightctrl');
-const simulatedctrl= require('./controllers/simulatedctrl');
 const meterctrl= require('./controllers/meterctrl');
 const simulatedlightctrl= require('./controllers/simulatedlightctrl');
 const simulatedmeterctrl= require('./controllers/simulatedmeterctrl');
@@ -49,7 +48,6 @@ app.use('/uploads', express.static('uploads'));
 
 app.use('/api/auth', authenticatectrl);
 app.use('/api/fan', fanctrl);
-app.use('/api/simulated', simulatedctrl);
 app.use('/api/light', lightctrl);
 app.use('/api/meter', meterctrl);
 app.use('/api/simulatedlight', simulatedlightctrl);

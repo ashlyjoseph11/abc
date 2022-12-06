@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 const electricMeterSchema = new mongoose.Schema(
   {
-    // airline_id:{
-    //     type:mongoose.Schema.Types.ObjectId,
-    //     ref:"airline"
-    // },
-    // airlineName: String,
     electricMeterId:{
         type:String,
     },
