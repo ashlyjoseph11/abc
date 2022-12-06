@@ -43,7 +43,11 @@ const simulatedmeterSchema = new mongoose.Schema(
     This_Years_Usage: {
       type: String,
       required: true,
-  }
+  },
+  work_status: {
+    type: String,
+    required: true,
+}
   },
 
   { timestamps: true }
