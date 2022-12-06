@@ -9,6 +9,10 @@ const fanctrl = require('./controllers/fanctrl');
 const lightctrl = require('./controllers/lightctrl');
 const simulatedctrl= require('./controllers/simulatedctrl');
 const meterctrl= require('./controllers/meterctrl');
+const simulatedlightctrl= require('./controllers/simulatedlightctrl');
+const simulatedmeterctrl= require('./controllers/simulatedmeterctrl');
+const simulatedfanctrl= require('./controllers/simulatedfanctrl');
+
 
 //const testredis = require("./controllers/redis")
 
@@ -48,6 +52,10 @@ app.use('/api/fan', fanctrl);
 app.use('/api/simulated', simulatedctrl);
 app.use('/api/light', lightctrl);
 app.use('/api/meter', meterctrl);
+app.use('/api/simulatedlight', simulatedlightctrl);
+app.use('/api/simulatedmeter', simulatedmeterctrl);
+app.use('/api/simulatedfan', simulatedfanctrl);
+
 
 
 

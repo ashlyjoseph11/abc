@@ -1,10 +1,10 @@
 const simulated_light = require("../model/simulated_light");
 
 class SimulatedLightServices {
-    static getSimulatedLights = async(userid) => {
-        console.log(userid)
+    static getSimulatedLights = async(id) => {
+        console.log(id)
                 try {
-                    let foundLights = await simulated_light.find({"userId": userid });
+                    let foundLights = await simulated_light.find({"userId": id });
                     if(foundLights != [])
                     {
                         console.log(foundLights);
@@ -32,6 +32,26 @@ class SimulatedLightServices {
         catch(err){
                 console.log(err);
                 console.log("Some unexpected error occured while adding electric meter")
+        }
+    }
+
+    static updateSimulatedLight = async (id, data) => {
+        try {
+            const query = { 
+                _id: id
+            };
+            
+            const updatedLight = await simulated_light.findOneAndUpdate(query,data);
+
+            if(updatedLight)
+            {
+                return { updatedLight }
+            }
+                               
+        }
+        catch(err){
+                console.log(err);
+                console.log("Some unexpected error occured while updating electric meter")
         }
     }
 

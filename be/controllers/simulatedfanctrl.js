@@ -2,18 +2,17 @@ const express = require('express');
 
 const User = require('../model/user');
 const { response } = require('../index.js');
-const { SimulatedLightServices } = require('../services/SimulatedLightServices.js');
-const { SimulatedServices } = require('../services/SimulatedLightServices.js');
+const { SimulatedFanServices } = require('../services/SimulatedFanServices.js');
 const router = express.Router();
 
 
 
  //also write code for get light by id.
-  router.get('/getSimulatedLights', async (req, res) => {
+  router.get('/getSimulatedFans', async (req, res) => {
     let id = req.query.user_id;
     const response = {};
     try {
-      let result = await SimulatedLightServices.getSimulatedLights(id);
+      let result = await SimulatedFanServices.getSimulatedFans(id);
       
       if (result) {
         response.success = true;
@@ -35,14 +34,14 @@ const router = express.Router();
     }
   });
 
-  router.post('/addSimulatedLight', async (req, res) => {
+  router.post('/addSimulatedFan', async (req, res) => {
     //const data = req.body;
     console.log('here.....');
     let data = req.body;
     const response = {};
     try {
         console.log(data);
-        let result = await SimulatedLightServices.addSimulatedLight(data);   
+        let result = await SimulatedFanServices.addSimulatedFan(data);   
       console.log("result:"+result);
       if (result) {
         response.success = true;
@@ -65,12 +64,12 @@ const router = express.Router();
   });
 
   //
-  router.put('/updateSimulatedLight', async (req, res) => {
+  router.put('/updateSimulatedFan', async (req, res) => {
     const  {id}  = req.query;
     const data = req.body;
     const response = {};
     try {
-        let result = await SimulatedLightServices.updateSimulatedLight(id,data);   
+        let result = await SimulatedFanServices.updateSimulatedFan(id,data);   
       if (result) {
         response.success = true;
         response.user = result;
