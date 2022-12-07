@@ -15,7 +15,8 @@ const parameters = [
   {title : "Voltage:",
   paddingTop: "18px"},
   {title : "Current:",
-  paddingTop: "18px"}
+  paddingTop: "18px"},
+
 ]   
     
 
@@ -69,9 +70,11 @@ const para = {
 export const Fan = () => {
 
 const [electricMeterUser , setElectricMeterUser] = useState([]);
+const userid = localStorage.getItem("id");
+
 
 useEffect(() => {
-  axios.get("http://localhost:3001/api/simulatedfan/getSimulatedFans?user_id=637220a2858bb384838f8286").
+  axios.get("http://localhost:3001/api/simulatedfan/getSimulatedFans?user_id=" + userid).
   then(async (res) => {
       if (res.status == 200) {
         if (res) {
@@ -104,7 +107,7 @@ useEffect(() => {
               <li style={meterListStyle}>
                 <span style={{ background: 'lightgray', boxShadow: "5px 5px #888888" }} >{data.fan_name}</span>
                 <img style={{ marginTop: "16px", marginLeft: "60px" }} width="60" src={fan} alt="alt" />
-                <span style={data.work_Status === "true" ? { color: 'green' } : { color: 'red' }} >{data.work_Status? "Working": "Failing"}</span>
+                <span style={data.work_status === "true" ? { color: 'green' } : { color: 'red' }} >{data.work_status ==  "true" ? "Working": "Failing"}</span>
                 <span>{data.Fan_Speed}</span>
                 <span>{data.Speed_Number}</span>
                 <span>{data.Rotation_Pattern}</span>

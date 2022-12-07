@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import '../../App.css'
 import BackgroundImage from '../../assets/images/landing-page.jpg'
 
+
 export const LandingPage = () => {
     const navigate = useNavigate();
 

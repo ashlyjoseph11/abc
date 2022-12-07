@@ -105,7 +105,7 @@ useEffect(() => {
               <li style={meterListStyle}>
                 <span style={{ background: 'lightgray', boxShadow: "5px 5px #888888" }} >{data.light_name}</span>
                 <img style={{ marginTop: "16px", marginLeft: "60px" }} width="60" src={energy} alt="alt" />
-                <span style={data.work_Status === "true" ? { color: 'green' } : { color: 'red' }} >{data.work_Status? "Working": "Failing"}</span>
+                <span style={data.work_status === "true" ? { color: 'green' } : { color: 'red' }} >{data.work_status == "true"? "Working": "Failing"}</span>
                 <span>{data.Luminious_Efficacy}</span>
                 <span>{data.Luminious_Flux}</span>
                 <span>{data.Luminious_Intensity}</span>

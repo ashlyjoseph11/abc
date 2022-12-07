@@ -123,9 +123,10 @@ const para = {
 export const MonitorTracking = () => {
 
 const [electricMeterUser , setElectricMeterUser] = useState([]);
+const userid = localStorage.getItem("id");
 
 useEffect(() => {
-  axios.get("http://localhost:3001/api/simulated/getSimulateddetails/?type=ElectricMeter").
+  axios.get("http://localhost:3001/api/simulatedmeter/getSimulatedMeters?user_id=" + userid).
   then(async (res) => {
       if (res.status == 200) {
         if (res) {
@@ -157,16 +158,16 @@ useEffect(() => {
           <ol>
             {electricMeterUser.map((data) => (
               <li style={meterListStyle}>
-                <span style={{ background: 'lightgray', boxShadow: "5px 5px #888888" }} >{data.name}</span>
+                <span style={{ background: 'lightgray', boxShadow: "5px 5px #888888" }} >{data.meter_name}</span>
                 <img style={{ marginTop: "16px", marginLeft: "60px" }} width="60" src={energy} alt="alt" />
-                <span style={data.work_Status === "Working" ? { color: 'green' } : { color: 'red' }} >{data.work_Status}</span>
-                <span>{data.electricity_capacity}</span>
+                <span style={data.work_status === "true" ? { color: 'green' } : { color: 'red' }} >{data.work_status =="true"? "Working":"Failing" }</span>
+                <span>{data.Electricity_Capacity}</span>
                 <span>{data.Voltage}</span>
                 <span>{data.Current}</span>
-                <span>{data.Last_24_hr}</span>
-                <span>{data.weekUsage}</span>
-                <span>{data.monthUsage}</span>
-                <span>{data.yearUsage}</span>
+                <span>{data.Last_24hr_Usage}</span>
+                <span>{data.This_Weeks_Usage}</span>
+                <span>{data.This_Months_Usage}</span>
+                <span>{data.This_Years_Usage}</span>
               </li>
             ))}
           </ol>

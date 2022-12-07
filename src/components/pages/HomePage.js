@@ -15,9 +15,9 @@ export default function HomePage() {
     const data = [
         [
           "Day",
-          "Electricity Meter 1",
-          "Electricity Meter 2",
-          "Electricity Meter 3",
+          " Meter Usage 1",
+          "Meter Usage 2",
+          "Meter Usage 3",
         ],
         [1, 37.8, 10.8, 41.8],
         [2, 30.9, 33.5, 50.4],

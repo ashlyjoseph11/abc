@@ -15,12 +15,10 @@ export const ElectricWaterButtonOption = () => {
                 <button className='light-grey' style={buttonStyle} onClick={(e) => setMeter('electric')} >
                     Electricity
                 </button>
-                <button className='light-grey' style={buttonStyle} onClick={(e) => setMeter('water')}>
-                    Water
-                </button>
+                
             </div>
             {meter === 'electric' && <MonitorTracking />}
-            {meter === 'water' && <WaterMeterMonitorTracking />}
+          
 
         </div>
     )
