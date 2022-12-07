@@ -26,11 +26,11 @@ function ControlMeter() {
   const [type, setType] = useState('TCP/IP')
   const [data, setData] = useState('30 seconds')
   const [load, setLoad] = useState('AC Loads')
-  const [userId, setuserId] = useState(localStorage.getItem("id"));
+  const userId= localStorage.getItem("id");
 
 
   useEffect(() => {
-    axios.get("http://localhost:3001/api/meter/getMeterDetails?userId=637220a2858bb384838f8286").
+    axios.get("http://localhost:3001/api/meter/getMeterDetails?userId=" + userId).
     then(async (res) => {
         if (res.status == 200) {
           if (res) {
