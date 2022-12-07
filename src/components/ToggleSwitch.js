@@ -1,9 +1,30 @@
 import React, {useState} from "react";
+import axios from "axios";
 import "../styles/ToggleSwitch.css";
 
-function ToggleSwitch() {
-  const [isToggled, setIsToggled] = useState(false);
-  const onToggle = () => setIsToggled(!isToggled);
+function ToggleSwitch({activeStatus, meterId, gettoggle}) {
+
+ 
+  const [isToggled, setIsToggled] = useState(activeStatus);
+  const onToggle = () => {
+    
+    let toggleValue =  setIsToggled(!isToggled)
+    axios.patch("http://localhost:3001/api/meter/updateMeter?id=" +meterId, toggleValue).
+    then(async (res) => {
+      if (res.status == 200) {
+        if (res) {
+        }            
+      }
+      else {
+          console.log(res.status);
+      }
+    }).catch((err) => {
+      console.log(err)
+    });
+    
+  };
+
+  
   return (
     <label className="toggle-switch">
       <input type="checkbox" checked={isToggled} onChange={onToggle} />

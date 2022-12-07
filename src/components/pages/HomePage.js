@@ -38,16 +38,16 @@ export default function HomePage() {
     return (
         <>
         <div className="text-left" style={{width: '80%', marginLeft: '17em'}} >
-            <h5>Today's Usuage</h5>
+            <h5>Today's Usage</h5>
             <Table table borderless>
                 <thead>
                 <tr>
                 <th></th>
-                    <th className='light-grey'>Todays's Usage <p>29 KWh</p></th>
+                    <th className='light-grey'>Todays's Usage <p>24 KWh</p></th>
                     <th></th>
-                    <th className='light-grey'>last 24hr Usage <p>29 KWh</p> </th>       
+                    <th className='light-grey'>last 24hr Usage <p>34 KWh</p> </th>       
                     <th></th>     
-                    <th className='light-grey'>Last Update <p>Date,Time</p> </th>
+                    <th className='light-grey'>Last Update <p>2022-12-05T03:26:34.527+00:00</p> </th>
                     <th></th>
                 </tr>
                 </thead>
@@ -57,11 +57,11 @@ export default function HomePage() {
                 <thead>
                 <tr>
                 <th></th>
-                    <th className='light-grey'>Total daily Usage <p>574 KWh</p> </th>
+                    <th className='light-grey'>Total daily Usage <p>572 KWh</p> </th>
                     <th></th>
-                    <th className='light-grey'>Avg Daily  Usage <p>82 KWh</p> </th>       
+                    <th className='light-grey'>Avg Daily  Usage <p>86 KWh</p> </th>       
                     <th></th>     
-                    <th className='light-grey'>Max Usage<p>97 KWh</p> </th>
+                    <th className='light-grey'>Max Usage<p>77 KWh</p> </th>
                     <th></th>
                 </tr>
                 </thead>
@@ -71,11 +71,11 @@ export default function HomePage() {
                 <thead>
                 <tr>
                 <th></th>
-                <th className='light-grey'>Total daily Usage <p>2370 KWh</p> </th>
+                <th className='light-grey'>Total daily Usage <p>2350 KWh</p> </th>
                     <th></th>
-                    <th className='light-grey'>Avg Daily Usage <p>79 KWh</p> </th>       
+                    <th className='light-grey'>Avg Daily Usage <p>65 KWh</p> </th>       
                     <th></th>     
-                    <th className='light-grey'>Max Usage <p>112 KWh</p> </th>
+                    <th className='light-grey'>Max Usage <p>102 KWh</p> </th>
                     <th></th>
                 </tr>
                 </thead>

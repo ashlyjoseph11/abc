@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import axios from "axios";
 import { useState } from 'react';
 import { Table } from 'react-bootstrap';
@@ -62,28 +62,25 @@ export const MeterDeviceManagement = () => {
     const [cloudStatus, setcloudStatus] = useState("");
     const [workingStatus, setworkingStatus] = useState("");
     const [activeStatus, setactiveStatus] = useState("");
-    const [userId, setuserId] = useState("637220a2858bb384838f8286");
+    const [userId, setuserId] = useState(localStorage.getItem("id"));
 
+    const buttonRef = useRef(null);
     useEffect(() => {
         //Runs on the first render
         //And any time any dependency value changes
-        axios.get("http://localhost:3001/api/meter/getMeterDetails?userId=637220a2858bb384838f8286").
+        if (userId) {
+          axios.get(`http://localhost:3001/api/meter/getMeterDetails?userId=${userId}`).
         then(async (res) => {
-            console.log("success", res);
-            if (res.status == 200) {
-              if (res) {
-                console.log(res.data.user);
+              if (res.data) {
                 setMeterdetails(res.data.user);
-                console.log(meterdetails);
               }            
-            }
             else {
                 console.log(res.status);
             }
           }).catch((err) => {
             console.log(err)
           });
-
+        }
       }, []);
 
       const view = (data) => {
@@ -114,45 +111,7 @@ export const MeterDeviceManagement = () => {
         
       }
 
-      // const view = (id) => {
-      //   console.log(id);
-      //   setHideform(false);
-      //   setisDisabled(true);
-      //   setshowSubmit(false);
 
-      //   axios.get("http://localhost:3001/api/meter/getMeterDetails?userId=637220a2858bb384838f8286").
-      //   then(async (res) => {
-      //       if (res.status == 200) {
-      //           if (res) {
-      //               console.log(res.data.user.meter);
-      //               let Meter = res.data.user.meter;
-      //               setId(Meter._id);
-      //               setelectricMeterId(Meter.electricMeterId);
-      //               setelectricMeterName(Meter.electricMeterName);
-      //               setelectricCapacity(Meter.electricCapacity);
-      //               setlocation(Meter.location);
-      //               setmanufacturer(Meter.manufacturer);
-      //               setinstallationMethod(Meter.installationMethod);
-      //               setinstallationDate(Meter.installationDate);
-      //               setPower(Meter.power);
-      //               setmeausurementAccuracy(Meter.meausurementAccuracy);
-      //               setdeploymentDate(Meter.deploymentDate);
-      //               setdimensions(Meter.dimensions);
-      //               setmodel(Meter.model);
-      //               setcloudStatus(Meter.cloudStatus);
-      //               setworkingStatus(Meter.workingStatus);
-      //               setactiveStatus(Meter.activeStatus);
-      //               setuserId(Meter.userId); 
-      //           }            
-      //         }
-      //         else {
-      //             console.log(res.status);
-      //         }
-      //   }).catch((err)=> {
-      //       console.log(err);
-      //   });
-
-      // }
 
       const update = (id,data) => {
         console.log(id);
@@ -175,15 +134,11 @@ export const MeterDeviceManagement = () => {
         axios.delete("http://localhost:3001/api/meter/deleteMeter?id="+id).
         then(async (res) => {
             console.log("success", res);
-            if (res.status == 200) {
-              if (res) {
-                console.log(res.data.user.oldMeter.deletedCount);
-                window.location.reload(false);
-              }            
-            }
-            else {
-                console.log(res.status);
-            }
+            debugger;
+            axios.get(`http://localhost:3001/api/meter/getMeterDetails?userId=${userId}`).
+            then(async (res)=> {
+              setMeterdetails(res.data.user.filter(item => item.id !== id ))
+            })
           }).catch((err) => {
             console.log(err)
           });
@@ -212,17 +167,15 @@ export const MeterDeviceManagement = () => {
         setuserId("");
        }
 
-       const onsubmitaction = (e) => {
-
-        e.preventDefault();
-        console.log(_id);
+       const onsubmitaction = (event) => {
+          debugger;
         if (_id != ""){
+          debugger;
           Updatedataindatabase(_id);
         }
         else{
           adddatatodatabase();
         }
-        window.location.reload(false);
        }
 
        const adddatatodatabase = () =>{
@@ -243,13 +196,14 @@ export const MeterDeviceManagement = () => {
           "cloudStatus":cloudStatus,
           "workingStatus":workingStatus,
           "activeStatus":activeStatus,
-          "userId":"637220a2858bb384838f8286"
+          "userId":localStorage.getItem("id")
         }
 
-        axios.post("http://localhost:3001/api/meter/addMeterdetails",new_data).then(async (res) => {
+        axios.post("http://localhost:3001/api/meter/addMeterdetails", new_data).then(async (res) => {
+          debugger
             if (res.status === 200) {
               if (res) {                
-                console.log(res.data.meter.newmeter);
+                
             }
           }
           else{
@@ -260,8 +214,7 @@ export const MeterDeviceManagement = () => {
           });
       }
 
-      const Updatedataindatabase = (id) => {
-
+      const Updatedataindatabase = (id ) => {
         const updated_data = {
           "electricMeterId":electricMeterId,
           "electricMeterName":electricMeterName,
@@ -282,18 +235,32 @@ export const MeterDeviceManagement = () => {
         }
 
         axios.put("http://localhost:3001/api/meter/updateMeter?id="+id,updated_data).then(async (res) => {
-            if (res.status === 200) {
-              if (res) {                
-                console.log(res.data.meter.newmeter);
+              if (res.data ) {                
+        setelectricMeterId(res.data.electricMeterId);
+        setelectricMeterName(res.data.electricMeterName);
+        setPower(res.data.power);
+        setlocation(res.data.location);
+        setelectricCapacity(res.data.electricCapacity);
+        setmanufacturer(res.data.manufacturer);
+        setdimensions(res.data.dimensions);
+        setinstallationDate(res.data.installationDate);
+        setdeploymentDate(res.data.deploymentDate);
+        setinstallationMethod(res.data.installationMethod);
+        setmeausurementAccuracy(res.data.meausurementAccuracy);
+        setmodel(res.data.model);
+        setcloudStatus(res.data.cloudStatus);
+        setworkingStatus(res.data.workingStatus);
+        setactiveStatus(res.data.activeStatus);
+        setuserId(res.data.userId);
             }
-          }
+          
           else{
             console.log(res.status);
           }
         }).catch((err) => {
             console.log(err)
           });
-        
+          setHideform(true);
       }
 
     return(

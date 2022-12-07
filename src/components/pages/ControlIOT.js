@@ -46,6 +46,8 @@ function ControlIOT() {
             <th>Connect to cloud</th>
             <th></th>
           </tr>
+          </thead>
+          <tbody>
           <tr>
             <th><img width="30" src={iot ==='Light'? light : fan}/> {iot==='Light'? 'LIOT':'FIOT'}001</th>
             <th>{iot} Meter 1</th>
@@ -102,7 +104,7 @@ function ControlIOT() {
             <th><ToggleSwitch/></th>
             <th><img width="30" src={settings} onClick={(s) => setSetting('setting')}/></th>
           </tr>
-        </thead>
+          </tbody>
       </Table>
       <br></br>
       {setting==='setting'?

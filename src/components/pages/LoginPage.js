@@ -37,6 +37,7 @@ export const LoginPage = () => {
                 
                 //localStorage.setItem("name", res?.data?.user?.foundUser?.name);
                 localStorage.setItem("email", res?.data?.user?.foundUser?.email);
+                localStorage.setItem("id", res?.data?.user?.foundUser?._id);
                 if(email === "admin@gmail.com") navigate('/admin')
                     else navigate('/home')
               }

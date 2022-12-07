@@ -272,7 +272,7 @@ button{
 }
 
 .crud-button--primary {
-  background-color: #2185d0;
+  background-color: teal;
 }
 
 .crud-button--primary:hover {
@@ -290,7 +290,7 @@ button{
 }
 
 .crud-button--negative {
-  background-color: #f51010;
+  background-color: grey;
 }
 
 .crud-button--negative:hover {

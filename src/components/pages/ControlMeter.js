@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import axios from "axios";
 import '../../styles/Buttons.css'
 import Table from 'react-bootstrap/Table'
 import energy from '../../assets/images/energy-meter-icon.png'
@@ -18,14 +19,39 @@ const buttonStyle = {
 }
 
 function ControlMeter() {
+
+  const [meterList, setMeterList] = useState([]);
   const [meter, setMeter] = useState('Electricity');
   const [setting, setSetting] = useState('');
   const [type, setType] = useState('TCP/IP')
   const [data, setData] = useState('30 seconds')
   const [load, setLoad] = useState('AC Loads')
+  const [userId, setuserId] = useState(localStorage.getItem("id"));
+
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/api/meter/getMeterDetails?userId=637220a2858bb384838f8286").
+    then(async (res) => {
+        if (res.status == 200) {
+          if (res) {
+            setMeterList(res.data.user);
+            console.log();
+          }            
+        }
+        else {
+            console.log(res.status);
+        }
+      }).catch((err) => {
+        console.log(err)
+      });
+
+
+  }, [])
+
   return (
+
     
-    <div className="table-wrapper">
+    <div className="table-wr  apper">
       <br></br>
       <div style={{display:'flex', justifyContent: "center"}}>
       <button className='light-grey' style={buttonStyle} onClick={(e) => setMeter('Electricity')}>
@@ -47,63 +73,19 @@ function ControlMeter() {
             <th>Connect to cloud</th>
             <th></th>
           </tr>
-          <tr>
-            <th><img width="30" src={meter ==='Electricity'? energy : water}/> {meter==='Electricity'? 'EMETE':'WMETE'}001</th>
-            <th>{meter} Meter 1</th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th> <img width="30" src={settings} onClick={(s) => setSetting('setting')}/></th>
+          </thead>
+          <tbody>
+          {meterList.map((item) => (
+          <tr key={item._id}>
+            <td><img width="30" src={meter ==='Electricity'? energy : water}/>{item.electricMeterId}</td>
+            <td>{item.electricMeterName}</td>
+            <td><ToggleSwitch activeStatus={item.activeStatus} meterId = {item._id}/></td>
+            <td><ToggleSwitch activeStatus={item.workingStatus} meterId = {item._id}/></td>
+            <td><ToggleSwitch activeStatus={item.cloudStatus} meterId = {item._id}/></td>
+            <td> <img width="30" src={settings} onClick={(s) => setSetting('setting')}/></td>
           </tr>
-          <tr>
-            <th><img width="30" src={meter ==='Electricity'? energy : water}/>{meter==='Electricity'? 'EMETE':'WMETE'}002</th>
-            <th>{meter} Meter 2</th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th><img width="30" src={settings} onClick={(s) => setSetting('setting')}/></th>
-          </tr>
-          <tr>
-            <th><img width="30" src={meter ==='Electricity'? energy : water}/>{meter==='Electricity'? 'EMETE':'WMETE'}003</th>
-            <th>{meter} Meter 3</th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th><img width="30" src={settings} onClick={(s) => setSetting('setting')}/></th>
-          </tr>
-          <tr>
-            <th><img width="30" src={meter ==='Electricity'? energy : water}/>{meter==='Electricity'? 'EMETE':'WMETE'}004</th>
-            <th>{meter} Meter 4</th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th><img width="30" src={settings} onClick={(s) => setSetting('setting')}/></th>
-          </tr>
-          <tr>
-            <th><img width="30" src={meter ==='Electricity'? energy : water}/>{meter=='Electricity'? 'EMETE':'WMETE'}005</th>
-            <th>{meter} Meter 5</th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th><img width="30" src={settings} onClick={(s) => setSetting('setting')}/></th>
-          </tr>
-          <tr>
-            <th><img width="30" src={meter ==='Electricity'? energy : water}/>{meter=='Electricity'? 'EMETE':'WMETE'}006</th>
-            <th>{meter} Meter 6</th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th><img width="30" src={settings} onClick={(s) => setSetting('setting')}/></th>
-          </tr>
-          <tr>
-            <th><img width="30" src={meter ==='Electricity'? energy : water}/>{meter=='Electricity'? 'EMETE':'WMETE'}007</th>
-            <th>{meter} Meter 7</th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th><ToggleSwitch/></th>
-            <th><img width="30" src={settings} onClick={(s) => setSetting('setting')}/></th>
-          </tr>
-        </thead>
+        ))}
+          </tbody>
       </Table>
       <br></br>
       {setting==='setting'?
