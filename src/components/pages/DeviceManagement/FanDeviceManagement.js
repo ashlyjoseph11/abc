@@ -140,7 +140,7 @@ export const FanDeviceManagement = () => {
             console.log("success", res);
             if (res.status == 200) {
               if (res) {
-                console.log(res.data.user.oldFan.deletedCount);
+                axios.get(`http://localhost:3001/api/meter/getMeterDetails?userId=${userId}`);
                 window.location.reload(false);
               }            
             }
@@ -150,6 +150,7 @@ export const FanDeviceManagement = () => {
           }).catch((err) => {
             console.log(err)
           });
+          
 
       }
 
